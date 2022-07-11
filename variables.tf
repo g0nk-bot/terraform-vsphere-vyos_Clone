@@ -363,7 +363,7 @@ variable "wait_for_guest_ip_timeout" {
 variable "wait_for_guest_net_timeout" {
   description = "The amount of time, in minutes, to wait for an available IP address on this virtual machine's NICs. Older versions of VMware Tools do not populate this property. In those cases, this waiter can be disabled and the wait_for_guest_ip_timeout waiter can be used instead. A value less than 1 disables the waiter."
   type        = number
-  default     = 5
+  default     = 0
 }
 
 variable "ignored_guest_ips" {
