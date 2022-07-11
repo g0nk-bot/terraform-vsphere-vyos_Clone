@@ -2,6 +2,35 @@
 
 ![Terraform Version](https://img.shields.io/badge/Terraform-0.12.6-green.svg) [![TF Registry](https://img.shields.io/badge/terraform-registry-blue.svg)](https://registry.terraform.io/modules/Terraform-VMWare-Modules/vm/vsphere/) [![Changelog](https://img.shields.io/badge/changelog-release-green.svg)](https://github.com/Terraform-VMWare-Modules/terraform-vsphere-vm/releases) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+Small changes from original. Removes Linux customisation speciffiacally to meet Debian GNU vsphere requirements. Currently only used for VyOS, have not tested with anything else.
+
+Vyos Template as follows:
+
+Assumes you have your port groups set up, and a template created.
+Supports lots of Portgroups, as a list. 
+
+```hcl
+module "Router name" {
+  source  = "github.com/UnspecifiedSpecimen/terraform-vsphere-vyos_Clone"
+  vmtemp   = "Vyos_template"
+  vmname = "Router name"
+  vmnameliteral = "Litterally the router name"
+  vmrp = "Resource group"
+  network_cards = ["Port group 1", "Port group 2", "Port group 3"]
+  dc        = "DATACENTER NAME"
+  datastore = "DATASTORE NAME"
+  vmfolder = "FOLDER FOR THIS BOX"
+
+  # insert the 50 required variables here
+}
+```
+
+
+Thanks to the OG auths. 
+
+Generic instructions below:
+
+
 For Virtual Machine Provisioning with (Linux/Windows) customization. Thanks to the new enhancements introduced in Terraform v0.12.6 this module include most of the advance features that are available in the resource `vsphere_virtual_machine`.
 
 ## Deploys (Single/Multiple) Virtual Machines to your vSphere environment
