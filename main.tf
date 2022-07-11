@@ -138,24 +138,24 @@ resource "vsphere_virtual_machine" "Linux" {
     linked_clone  = var.linked_clone
     timeout       = var.timeout
 
-    customize {
-      linux_options {
-        host_name    = "%{if var.vmnameliteral != ""}${var.vmnameliteral}%{else}${var.vmname}${count.index + 1}${var.vmnamesuffix}%{endif}"
-        domain       = var.vmdomain
-        hw_clock_utc = var.hw_clock_utc
-      }
+#    customize {
+#      linux_options {
+#        host_name    = "%{if var.vmnameliteral != ""}${var.vmnameliteral}%{else}${var.vmname}${count.index + 1}${var.vmnamesuffix}%{endif}"
+#        domain       = var.vmdomain
+#        hw_clock_utc = var.hw_clock_utc
+#      }
 
-      dynamic "network_interface" {
-        for_each = var.network_cards
-        content {
-          ipv4_address = var.ipv4[var.network_cards[network_interface.key]][count.index]
-          ipv4_netmask = "%{if local.interface_count == 1}${var.ipv4submask[0]}%{else}${var.ipv4submask[network_interface.key]}%{endif}"
-        }
-      }
-      dns_server_list = var.vmdns
-      dns_suffix_list = var.dns_suffix_list
-      ipv4_gateway    = var.vmgateway
-    }
+#      dynamic "network_interface" {
+#        for_each = var.network_cards
+#        content {
+#          ipv4_address = var.ipv4[var.network_cards[network_interface.key]][count.index]
+#          ipv4_netmask = "%{if local.interface_count == 1}${var.ipv4submask[0]}%{else}${var.ipv4submask[network_interface.key]}%{endif}"
+#        }
+#      }
+#      dns_server_list = var.vmdns
+#      dns_suffix_list = var.dns_suffix_list
+#      ipv4_gateway    = var.vmgateway
+#    }
   }
 
   // Advanced options

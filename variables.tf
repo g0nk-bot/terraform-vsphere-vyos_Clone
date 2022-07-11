@@ -43,10 +43,10 @@ variable "network_cards" {
   type        = list(string)
 }
 
-variable "ipv4" {
-  description = "host(VM) IP address in map format, support more than one IP. Should correspond to number of instances."
-  type        = map
-}
+#variable "ipv4" {
+#  description = "host(VM) IP address in map format, support more than one IP. Should correspond to number of instances."
+#  type        = map
+#}
 
 variable "ipv4submask" {
   description = "ipv4 Subnet mask."
@@ -351,7 +351,7 @@ variable "full_name" {
 variable "wait_for_guest_net_routable" {
   description = "Controls whether or not the guest network waiter waits for a routable address. When false, the waiter does not wait for a default gateway, nor are IP addresses checked against any discovered default gateways as part of its success criteria. This property is ignored if the wait_for_guest_ip_timeout waiter is used."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "wait_for_guest_ip_timeout" {
